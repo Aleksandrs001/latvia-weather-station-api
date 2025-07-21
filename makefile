@@ -9,6 +9,7 @@ help:
 	@echo "  app-download-weather-data    Download CSV from source"
 	@echo "  app-import-stations          Import stations from CSV to DB"
 	@echo "  bash                   Open bash shell inside PHP container"
+	@echo "  unit-test              Run unit tests for StationImporter"
 
 install:
 	composer install
