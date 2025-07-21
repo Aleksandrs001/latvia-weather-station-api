@@ -1,0 +1,6 @@
+import-weather-data:
+	php bin/console app:download-csv
+
+
+import-stations:
+	php bin/console app:import-stations
