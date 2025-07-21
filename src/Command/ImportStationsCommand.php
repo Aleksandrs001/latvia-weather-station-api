@@ -17,10 +17,9 @@ class ImportStationsCommand extends Command
 {
     protected static $defaultName = 'app:import-stations';
 
-
     public function __construct(
-        private StationImporter $importer,
-        private CsvDownloader $csvDownloader
+        private readonly StationImporter $importer,
+        private readonly CsvDownloader   $csvDownloader
     ) {
         parent::__construct();
     }
@@ -30,27 +29,11 @@ class ImportStationsCommand extends Command
         $this->setDescription('Imports stations from CSV file');
     }
 
-//    protected function execute(InputInterface $input, OutputInterface $output): int
-//    {
-//        $output->writeln('<info>Starting stations import...</info>');
-//
-//        //update database if something changed
-//
-//
-//
-////        if ($this->importer->isAlreadyImported()) {
-////            $output->writeln('<info>Stations already imported. Skipping import.</info>');
-////            return Command::SUCCESS;
-////        }
-//
-//        $this->importer->import();
-//        $output->writeln('<info>Stations imported successfully.</info>');
-//        return Command::SUCCESS;
-//    }
-
+    /**
+     * @throws \Exception
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-
         $output->writeln('<info>Checking for CSV updates...</info>');
 
         $updated = $this->csvDownloader->download();
