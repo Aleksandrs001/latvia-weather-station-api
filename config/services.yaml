@@ -4,7 +4,7 @@ parameters:
 services:
     App\Command\:
         resource: '../src/Command'
-        tags: ['console.command']
+        tags: [ 'console.command' ]
         autowire: true
         autoconfigure: true
 
@@ -14,7 +14,7 @@ services:
 
     App\Controller\:
         resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+        tags: [ 'controller.service_arguments' ]
         autowire: true
         autoconfigure: true
 
@@ -31,3 +31,10 @@ services:
         arguments:
             $csvPath: '%stations_csv_path%'
             $em: '@doctrine.orm.entity_manager'
+
+    App\Service\CsvDownloader:
+        arguments:
+            $csvPath: '%stations_csv_path%'
+        autowire: true
+        autoconfigure: true
+        public: true
