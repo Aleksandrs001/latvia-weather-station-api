@@ -8,6 +8,10 @@ services:
         autowire: true
         autoconfigure: true
 
+    App\Security\ApiTokenAuthenticator:
+        arguments:
+            $validToken: '%env(API_SECRET)%'
+
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']

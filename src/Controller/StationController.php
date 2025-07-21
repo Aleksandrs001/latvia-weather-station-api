@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Controller;
-
 
 use App\Repository\StationRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -45,28 +43,19 @@ class StationController extends AbstractController
             ], 503);
         }
 
-
-        if (!$station) {
-            return $this->json(['error' => 'Missing stationId parameter'], 400);
-        }
-
-        $station = $stationRepository->findOneBy(['stationId' => $stationId]);
-
         if (!$station) {
             return $this->json(['error' => 'Station not found'], 404);
         }
-        if ($station->getEndDate() == '3999.12.31 23:59:00'){
-            $active = $station->getEndDate() . ' Active';
-        } else {
-            $active = $station->getEndDate() . ' Inactive';
-        }
+
+        $endDate = $station->getEndDate();
+        $isActive = $endDate === '3999.12.31 23:59:00' ? 'Active' : 'Inactive';
 
         return $this->json([
             'Station_id' => $station->getStationId(),
             'Name' => $station->getName(),
             'WMO_id' => $station->getWmoid(),
             'Begin_date' => $station->getBeginDate(),
-            'End_date' => $active,
+            'End_date' => $endDate . ' ' . $isActive,
             'Latitude' => $station->getLatitude(),
             'Longitude' => $station->getLongitude(),
             'Gauss1' => $station->getGauss1(),
@@ -74,8 +63,7 @@ class StationController extends AbstractController
             'Geogr1' => $station->getGeogr1(),
             'Geogr2' => $station->getGeogr2(),
             'Elevation' => $station->getElevation(),
-            'ELEVATION_PRESSURE' => $station->getElevationPressure() ?: null
+            'ELEVATION_PRESSURE' => $station->getElevationPressure() ?: null,
         ]);
     }
-
 }
