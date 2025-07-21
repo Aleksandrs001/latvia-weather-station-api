@@ -27,3 +27,6 @@ app-import-stations:
 
 bash:
 	docker exec -it $(PHP_CONTAINER) bash
+
+unit-test:
+	docker exec -it weather-php ./vendor/bin/phpunit tests/Service/StationImporterTest.php
