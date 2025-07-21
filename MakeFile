@@ -1,6 +1,19 @@
-import-weather-data:
-	php bin/console app:download-csv
+PHP_CONTAINER=weather-php
 
+.PHONY: install run import-weather-data import-stations bash
+
+install:
+	docker-compose up -d --build
+
+run:
+	docker exec -it $(PHP_CONTAINER) php bin/console doctrine:migrations:migrate --no-interaction && \
+	docker exec -it $(PHP_CONTAINER) php bin/console app:import-csv
+
+import-weather-data:
+	docker exec -it $(PHP_CONTAINER) php bin/console app:download-csv
 
 import-stations:
-	php bin/console app:import-csv
+	docker exec -it $(PHP_CONTAINER) php bin/console app:import-csv
+
+bash:
+	docker exec -it $(PHP_CONTAINER) bash
