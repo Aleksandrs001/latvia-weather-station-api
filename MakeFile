@@ -3,4 +3,4 @@ import-weather-data:
 
 
 import-stations:
-	php bin/console app:import-stations
+	php bin/console app:import-csv
