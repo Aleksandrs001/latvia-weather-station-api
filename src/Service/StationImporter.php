@@ -30,6 +30,8 @@ class StationImporter
 
         $this->em->createQuery('DELETE FROM App\Entity\Station')->execute();
 
+        fgetcsv($handle);
+
         while (($data = fgetcsv($handle)) !== false) {
             $station = new Station();
             $station->setStationId($data[0]);
