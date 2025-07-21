@@ -1,2 +1,8 @@
 security:
-    enable_authenticator_manager: true
+    providers:
+        app_user_provider:
+            memory:
+                users:
+                    admin:
+                        password: 'password_hash_here'
+                        roles: 'ROLE_ADMIN'
