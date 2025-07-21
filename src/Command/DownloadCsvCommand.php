@@ -2,15 +2,20 @@
 
 namespace App\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+
+#[AsCommand(
+    name: 'app:download-csv',
+    description: 'downloading CSV file'
+)]
 
 class DownloadCsvCommand extends Command
 {
     protected static $defaultName = 'app:download-csv';
 
-//	private string $csvUrl = 'https://data.gov.lv/dati/lv/dataset/hidrometeorologiskie-noverojumi/resource/c32c7afd-0d05-44fd-8b24-1de85b4bf11d/download/meteorological_stations.csv';
     private string $csvUrl = 'https://data.gov.lv/dati/dataset/40d80be5-0c09-47c4-80f3-fad4bec19f33/resource/c32c7afd-0d05-44fd-8b24-1de85b4bf11d/download/meteo_stacijas.csv';
     protected function configure(): void
     {
