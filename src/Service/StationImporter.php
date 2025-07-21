@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Station;
+use Carbon\Carbon;
 use Doctrine\ORM\EntityManagerInterface;
 
 class StationImporter
@@ -44,6 +45,8 @@ class StationImporter
             $station->setGeogr1(is_numeric($data[9]) ?? 0);
             $station->setGeogr2(is_numeric($data[10]) ?? 0);
             $station->setElevationPressure(is_numeric($data[12]) ?? 0.01);
+            $station->setCreatedAt(Carbon::now());
+            $station->setUpdatedAt(Carbon::now());
             $this->em->persist($station);
         }
 
