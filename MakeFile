@@ -5,8 +5,7 @@ PHP_CONTAINER=weather-php
 install:
 	docker-compose up -d --build
 
-run:yes
-	docker exec -it $(PHP_CONTAINER) php bin/console doctrine:migrations:diff
+run:
 	docker exec -it $(PHP_CONTAINER) php bin/console doctrine:migrations:migrate --no-interaction && \
 	docker exec -it $(PHP_CONTAINER) php bin/console app:download-csv
 	docker exec -it $(PHP_CONTAINER) php bin/console app:import-csv
