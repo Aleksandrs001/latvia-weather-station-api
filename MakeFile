@@ -17,3 +17,7 @@ import-weather-data:
 import-stations:
 	docker exec -it $(PHP_CONTAINER) php bin/console app:import-csv
 
+run_auto:
+	docker exec -it weather-php php bin/console app:download-csv-auto
+
+
