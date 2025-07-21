@@ -54,4 +54,12 @@ class StationImporter
 
         $this->em->flush();
     }
+
+    public function isAlreadyImported(): bool
+    {
+        $repository = $this->em->getRepository(Station::class);
+        $count = $repository->count([]);
+
+        return $count > 0;
+    }
 }

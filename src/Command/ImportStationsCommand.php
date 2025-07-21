@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Service\CsvDownloader;
 use App\Service\StationImporter;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
@@ -16,12 +17,12 @@ class ImportStationsCommand extends Command
 {
     protected static $defaultName = 'app:import-stations';
 
-    private StationImporter $importer;
 
-    public function __construct(StationImporter $importer)
-    {
+    public function __construct(
+        private StationImporter $importer,
+        private CsvDownloader $csvDownloader
+    ) {
         parent::__construct();
-        $this->importer = $importer;
     }
 
     protected function configure()
@@ -29,10 +30,41 @@ class ImportStationsCommand extends Command
         $this->setDescription('Imports stations from CSV file');
     }
 
+//    protected function execute(InputInterface $input, OutputInterface $output): int
+//    {
+//        $output->writeln('<info>Starting stations import...</info>');
+//
+//        //update database if something changed
+//
+//
+//
+////        if ($this->importer->isAlreadyImported()) {
+////            $output->writeln('<info>Stations already imported. Skipping import.</info>');
+////            return Command::SUCCESS;
+////        }
+//
+//        $this->importer->import();
+//        $output->writeln('<info>Stations imported successfully.</info>');
+//        return Command::SUCCESS;
+//    }
+
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+
+        $output->writeln('<info>Checking for CSV updates...</info>');
+
+        $updated = $this->csvDownloader->download();
+
+        if (!$updated) {
+            $output->writeln('<comment>No changes detected, skipping import.</comment>');
+            return Command::SUCCESS;
+        }
+
+        $output->writeln('<info>CSV updated, starting import...</info>');
         $this->importer->import();
+
         $output->writeln('<info>Stations imported successfully.</info>');
         return Command::SUCCESS;
     }
+
 }
