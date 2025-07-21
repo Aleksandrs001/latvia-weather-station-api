@@ -3,6 +3,7 @@ PHP_CONTAINER=weather-php
 .PHONY: install run import-weather-data import-csv bash
 
 install:
+	composer install
 	docker-compose up -d --build
 
 run:
