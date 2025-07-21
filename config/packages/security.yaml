@@ -5,4 +5,9 @@ security:
             security: false
 
         main:
-            security: false
+            stateless: true
+            custom_authenticators:
+                - App\Security\ApiTokenAuthenticator
+
+    access_control:
+        - { path: ^/api, roles: ROLE_API }
