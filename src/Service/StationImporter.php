@@ -17,6 +17,9 @@ class StationImporter
         $this->em = $em;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function import(): void
     {
         if (!file_exists($this->csvPath)) {
