@@ -1,0 +1,30 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: 'Latvia Weather Station API'
+            description: 'API documentation'
+            version: '1.0.0'
+
+        tags:
+            -   name: Stations
+                description: 'List of weather stations'
+            -   name: StationDetails
+                description: 'Detailed weather station information'
+
+        components:
+            securitySchemes:
+                bearerAuth:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+        security:
+            -   bearerAuth: [ ]
+
+    models:
+        names:
+            Station:
+                alias: 'Station'
+                type: 'App\Dto\StationDto'
+            StationDetails:
+                alias: 'StationDetails'
+                type: 'App\Dto\StationDetailsDto'
