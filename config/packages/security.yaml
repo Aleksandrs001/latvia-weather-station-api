@@ -11,4 +11,5 @@ security:
                 - App\Security\ApiTokenAuthenticator
 
     access_control:
+        - { path: ^/api/doc, roles: PUBLIC_ACCESS }
         - { path: ^/api, roles: ROLE_API }

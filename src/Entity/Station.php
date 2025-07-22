@@ -58,6 +58,8 @@ class Station
     #[ORM\Column(type: 'datetime', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private \DateTimeInterface $updatedAt;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
