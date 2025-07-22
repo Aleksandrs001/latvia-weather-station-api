@@ -35,6 +35,6 @@ bash:
 unit-test:
 	docker exec -it weather-php ./vendor/bin/phpunit tests/Service/StationImporterTest.php
 
-unit-test2:
+unit-test1:
 	docker exec -it weather-php ./vendor/bin/phpunit tests/Controller/StationControllerTest.php
 

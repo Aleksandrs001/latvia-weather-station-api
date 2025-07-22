@@ -177,7 +177,7 @@ CSV;
         $importer->import();
 
         unlink($tempFile);
-        $this->addToAssertionCount(1); // убеждаем PHPUnit, что тест не "пустой"
+        $this->addToAssertionCount(1);
     }
 
 }
