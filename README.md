@@ -68,6 +68,7 @@ Run unit tests for the API controller:
 
 ---
 # API Endpoints
+
 GET /api/stations
 Returns a JSON array of all weather stations.
 
@@ -78,6 +79,8 @@ Returns detailed information about a specific weather station.
 
 # Authentication
 All endpoints require Bearer JWT authentication via the Authorization header.
+
+### ** Bearer token = super-secret-token**
 
 ---
 
