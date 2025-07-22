@@ -3,6 +3,7 @@
 This project is a Symfony-based REST API service providing weather station data for Latvia. It downloads station data in CSV format, imports it into a database, and exposes endpoints for querying station information.
 
 ---
+![gif](gif.gif)
 
 ## Requirements
 
@@ -81,6 +82,14 @@ Returns a JSON array of all weather stations.
 
 GET /api/stations/details?stationId={station_id}
 Returns detailed information about a specific weather station.
+
+---
+
+## API Documentation
+
+After starting the application, you can view the OpenAPI (Swagger) documentation in your browser at:
+
+[http://localhost:8080/api/doc](http://localhost:8080/api/doc)
 
 ---
 
