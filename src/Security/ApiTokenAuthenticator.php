@@ -20,6 +20,10 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
 
     public function supports(Request $request): ?bool
     {
+
+        $header = $request->headers->get('Authorization', '');
+        error_log('Authorization header in supports(): ' . $header);
+        return str_starts_with($header, 'Bearer ');
         // Поддерживаем только запросы с заголовком Authorization: Bearer ...
         return str_starts_with($request->headers->get('Authorization', ''), 'Bearer ');
     }

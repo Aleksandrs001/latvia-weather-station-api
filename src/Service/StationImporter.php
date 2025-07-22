@@ -36,6 +36,9 @@ class StationImporter
         fgetcsv($handle);
 
         while (($data = fgetcsv($handle)) !== false) {
+            if (count($data) < 13) {
+                continue;
+            }
             $station = new Station();
             $station->setStationId($data[0]);
             $station->setName($data[1]);

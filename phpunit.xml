@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         failOnWarning="true"
+         failOnRisky="true"
+         cacheResult="false"
+         processIsolation="false"
+>
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <php>
+        <env name="APP_ENV" value="test"/>
+        <env name="API_SECRET" value="super-secret-token"/>
+        <env name="KERNEL_CLASS" value="App\Kernel"/>
+        <env name="DATABASE_URL" value="pgsql://symfony:secret@db:5432/weather?serverVersion=15&amp;charset=utf8"/>
+        <env name="CORS_ALLOW_ORIGIN" value="*"/>
+
+    </php>
+</phpunit>

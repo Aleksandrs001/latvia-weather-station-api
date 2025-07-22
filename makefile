@@ -9,6 +9,8 @@ help:
 	@echo "  app-download-weather-data    Download CSV from source"
 	@echo "  app-import-stations          Import stations from CSV to DB"
 	@echo "  bash                   Open bash shell inside PHP container"
+	@echo "  unit-test             Run unit tests for StationImporter"
+	@echo "  unit-test2            Run unit tests for StationController"
 
 install:
 	composer install
@@ -28,5 +30,11 @@ app-import-stations:
 bash:
 	docker exec -it $(PHP_CONTAINER) bash
 
+
+
 unit-test:
 	docker exec -it weather-php ./vendor/bin/phpunit tests/Service/StationImporterTest.php
+
+unit-test2:
+	docker exec -it weather-php ./vendor/bin/phpunit tests/Controller/StationControllerTest.php
+

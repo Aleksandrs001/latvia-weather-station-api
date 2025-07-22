@@ -5,6 +5,7 @@ security:
             security: false
 
         main:
+            pattern: ^/api
             stateless: true
             custom_authenticators:
                 - App\Security\ApiTokenAuthenticator
