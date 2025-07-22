@@ -41,6 +41,13 @@ Download the weather station CSV file:
   make app-download-weather-data
 ```
 ---
+
+# For Automated daily updates, you can set up a cron job to run the following command:
+
+0 0 * * * docker exec -i weather-php php bin/console app:download-csv && docker exec -i weather-php php bin/console app:import-csv >> /path/to/project/var/log/daily_update.log 2>&1
+
+---
+
  Import stations from the CSV file into the database:
 ```bash
   make app-import-stations
