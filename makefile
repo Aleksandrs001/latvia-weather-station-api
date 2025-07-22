@@ -32,9 +32,9 @@ bash:
 
 
 
-unit-test:
+unit-test-StationImporter:
 	docker exec -it weather-php ./vendor/bin/phpunit tests/Service/StationImporterTest.php
 
-unit-test1:
+unit-test-StationController:
 	docker exec -it weather-php ./vendor/bin/phpunit tests/Controller/StationControllerTest.php
 
