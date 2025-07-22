@@ -59,7 +59,6 @@ class Station
     private \DateTimeInterface $updatedAt;
 
 
-
     public function getId(): ?int
     {
         return $this->id;

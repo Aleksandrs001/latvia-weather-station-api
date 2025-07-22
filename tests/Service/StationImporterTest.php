@@ -6,6 +6,7 @@ use App\Entity\Station;
 use App\Service\StationImporter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Query;
+use PHPUnit\Framework\MockObject\Exception;
 use PHPUnit\Framework\TestCase;
 
 class StationImporterTest extends TestCase
@@ -47,6 +48,10 @@ CSV;
         unlink($tempFile);
     }
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testImportSkipsInvalidData(): void
     {
         $csvContent = <<<CSV
@@ -85,6 +90,10 @@ CSV;
         $importer->import();
     }
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testImportHandlesEmptyFile(): void
     {
         $tempFile = tempnam(sys_get_temp_dir(), 'station_empty_');
@@ -108,6 +117,10 @@ CSV;
         unlink($tempFile);
     }
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testImportWithMultipleStations(): void
     {
         $csvContent = <<<CSV
@@ -140,6 +153,9 @@ CSV;
         unlink($tempFile);
     }
 
+    /**
+     * @throws Exception
+     */
     public function testImportFailsIfFileNotFound(): void
     {
         $this->expectException(\Exception::class);
@@ -150,6 +166,10 @@ CSV;
         $importer->import();
     }
 
+    /**
+     * @throws Exception
+     * @throws \Exception
+     */
     public function testImportSkipsRowWithTooFewColumns(): void
     {
         $csvContent = <<<CSV

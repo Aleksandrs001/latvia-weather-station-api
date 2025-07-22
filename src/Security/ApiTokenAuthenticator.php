@@ -24,7 +24,6 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
         $header = $request->headers->get('Authorization', '');
         error_log('Authorization header in supports(): ' . $header);
         return str_starts_with($header, 'Bearer ');
-        // Поддерживаем только запросы с заголовком Authorization: Bearer ...
         return str_starts_with($request->headers->get('Authorization', ''), 'Bearer ');
     }
 
@@ -37,7 +36,6 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
             throw new AuthenticationException('Invalid token');
         }
 
-        // Возвращаем паспорт с "пользователем", у которого есть роль ROLE_API
         return new SelfValidatingPassport(new UserBadge('api-user', function(string $userIdentifier) {
             return new class($userIdentifier) implements UserInterface {
                 private string $userIdentifier;
@@ -76,7 +74,6 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, $token, string $firewallName): ?JsonResponse
     {
-        // Продолжаем обработку запроса, без редиректов
         return null;
     }
 
@@ -84,4 +81,5 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
     {
         return new JsonResponse(['error' => 'Unauthorized'], JsonResponse::HTTP_UNAUTHORIZED);
     }
+
 }

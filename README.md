@@ -41,6 +41,11 @@ Download the weather station CSV file:
   make app-download-weather-data
 ```
 ---
+Import stations from the CSV file into the database:
+```bash
+  make app-import-stations
+```
+---
 
 # For Automated daily updates, you can set up a cron job to run the following command:
 
@@ -48,11 +53,6 @@ Download the weather station CSV file:
 
 ---
 
- Import stations from the CSV file into the database:
-```bash
-  make app-import-stations
-```
----
 # Open a bash shell inside the PHP container:
 
 ```bash
