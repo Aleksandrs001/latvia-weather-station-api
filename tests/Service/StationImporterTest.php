@@ -13,8 +13,10 @@ class StationImporterTest extends TestCase
     public function testImport(): void
     {
         $csvContent = <<<CSV
+station_id,name,wmo_id,start_date,end_date,lat,lon,gauss1,gauss2,geogr1,geogr2,elevation,elevation_pressure
 01001,Station One,12345,2000-01-01,3999-12-31,56.95,24.11,1.1,1.2,1.3,1.4,10.5,11.5
 CSV;
+
 
         $tempFile = tempnam(sys_get_temp_dir(), 'station_test_');
         file_put_contents($tempFile, $csvContent);
