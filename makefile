@@ -6,6 +6,7 @@ help:
 	@echo "Available make commands:"
 	@echo "  install                Install dependencies and build containers"
 	@echo "  run                    Run DB migration and import CSV"
+	@echo "  app-update-stations    Download and Import stations from CSV to DB"
 	@echo "  app-download-weather-data    Download CSV from source"
 	@echo "  app-import-stations          Import stations from CSV to DB"
 	@echo "  bash                   Open bash shell inside PHP container"
@@ -20,6 +21,9 @@ run:
 	docker exec -it $(PHP_CONTAINER) php bin/console doctrine:migrations:migrate --no-interaction && \
 	docker exec -it $(PHP_CONTAINER) php bin/console app:download-csv && \
 	docker exec -it $(PHP_CONTAINER) php bin/console app:import-csv
+
+app-update-stations:
+	docker exec -it $(PHP_CONTAINER) php bin/console app:update-stations
 
 app-download-weather-data:
 	docker exec -it $(PHP_CONTAINER) php bin/console app:download-csv

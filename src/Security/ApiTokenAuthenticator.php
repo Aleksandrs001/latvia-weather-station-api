@@ -24,7 +24,6 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
         $header = $request->headers->get('Authorization', '');
         error_log('Authorization header in supports(): ' . $header);
         return str_starts_with($header, 'Bearer ');
-        return str_starts_with($request->headers->get('Authorization', ''), 'Bearer ');
     }
 
     public function authenticate(Request $request): SelfValidatingPassport
